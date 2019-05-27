@@ -1,1 +1,1 @@
-//No me acuerdo que puso el profesor aca :V
+//No alcance a copiar la definicion de cabecera de la funcion de libfun.c
