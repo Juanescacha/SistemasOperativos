@@ -24,4 +24,6 @@ gcc basico.c -L. -lfun -o basico
 ```
 
 * Finalmente, el programa se ejecuta:
-`./basico`
+```
+./basico
+```
