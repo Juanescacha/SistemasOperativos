@@ -1,1 +1,1 @@
-void fun(void)
+void fun(void);
