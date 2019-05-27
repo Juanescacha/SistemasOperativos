@@ -4,9 +4,9 @@ En esta clase se hizo una revisión muy rápida de un programa sencillo en C que
 
 Se desarrollaron tres programas:
 
-* basico.c](https://github.com/Juanescacha/SistemasOperativos/blob/master/2019_05_24/basico.c)
-* libfun.c](https://github.com/Juanescacha/SistemasOperativos/blob/master/2019_05_24/libfun.c)
-* libfun.h](https://github.com/Juanescacha/SistemasOperativos/blob/master/2019_05_24/libfun.h)
+* [basico.c](https://github.com/Juanescacha/SistemasOperativos/blob/master/2019_05_24/basico.c)
+* [libfun.c](https://github.com/Juanescacha/SistemasOperativos/blob/master/2019_05_24/libfun.c)
+* [libfun.h](https://github.com/Juanescacha/SistemasOperativos/blob/master/2019_05_24/libfun.h)
 
 Para compilar el programa se llevan a cabo los siguientes pasos:
 
