@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "libfun.c"
+#include "libfun.h"
 
 int main(int argc , char** argv){
 	printf("Hola Mundo [%d]  \n" , argc);
