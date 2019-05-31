@@ -8,7 +8,7 @@ Los siguientes son unos códigos de calentamiento que presenta como usar los arc
 * [principal.c](principal.c)
 
 
-## cpu.c
+## cpu.cc
 
 ## mem.c
 
