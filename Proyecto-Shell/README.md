@@ -1,0 +1,3 @@
+# Shell Basico
+
+Como Ejecutar el Shell y Compilar etc...
