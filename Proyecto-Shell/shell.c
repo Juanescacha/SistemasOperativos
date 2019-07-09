@@ -7,7 +7,18 @@
 #include<readline/readline.h>
 #include<readline/history.h>
 
-#define MAXCOM 1000 // numero maximo de letras sportado
-#define MAXLIST 100 // numero maximo de comandos suportados
+#define MAXLETTERS 1000 // numero maximo de letras sportado
+#define MAXARGS 100 // numero maximo de comandos suportados
 #define clear() printf("\033[H\033[J")
+
+int main() {
+
+	char inputString[MAXLETTERS] , *parsedArgs[MAXARGS];
+	char*parsedArgsPiped[MAXARGS];
+	int execFlag = 0;
+
+
+
+	return 0;
+}
 
