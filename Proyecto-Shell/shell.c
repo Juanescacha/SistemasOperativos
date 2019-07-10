@@ -59,7 +59,7 @@ void execArgs(char** parsed) {
 
 	if (pid == -1) {
 		printf(" \n Fallo crear Fork Hijo");
-		return:
+		return;
 	} else if ( pid == 0 ) {
 		if ( execvp(parsed[0], parsed) < 0) [
 			printf(" \n No se puedo ejecutar el comando");
@@ -133,6 +133,57 @@ void abrirAyuda() {
 	"\n Todos los demas comandos generales disponibles en el shell de UNIX");
 
 	return;
+
+}
+
+int ownCmdHandler(char **parsed) {
+
+	int NoOfOwnCmds = 4, i, switchOwnArg = 0;
+	char* ListOfOwnCmds [NoOfOwnCmds];
+	char* username;
+
+	ListOfOwnCmds[0] = "exit";
+	ListOfOwnCmds[1] = "cd";
+	ListOfOwnCmds[2] = "help";
+	ListOfOwnCmds[3] = "hola";
+
+	for (i = 0, i < NoOfOwnCmds; i++) {
+		if(strcmp(parsed[0], ListOfOwnCmds[i] == 0) {
+			swuitchOwnArg = i + 1;
+			break;
+		}
+	}
+
+	switch (switchOwnArg) {
+	case 1:
+		printf("\n Adios \n");
+		exit(0);
+	case 2:
+		chdir(parsed[1]);
+		return 1;
+	case 3:
+		abrirAyuda();
+		return 1;
+	case 4:
+		username = getenv("USER");
+		printf("\n Hola %s , usa el comando help para saber mas comandos.. \n" , username);
+		return 1;
+	default:
+		break;
+	}
+
+	return 0;
+
+}
+
+void parseSpace(char* str , char** parsed) {
+
+	for ( int i = 0, i < MAXARGS , i++) {
+		parsed[i] = strsep(&str, " ");
+
+		if (parsed[i] == NULL) break:
+		if (strlen(parsed[i]) == 0) i--;
+	}
 
 }
 
