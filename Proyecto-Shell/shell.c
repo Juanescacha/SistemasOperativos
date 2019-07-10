@@ -52,6 +52,89 @@ int recEntrada (char* str) {
 
 }
 
+void execArgs(char** parsed) {
+
+	//Hacemos un Fork Hijo
+	pid_t pid = fork();
+
+	if (pid == -1) {
+		printf(" \n Fallo crear Fork Hijo");
+		return:
+	} else if ( pid == 0 ) {
+		if ( execvp(parsed[0], parsed) < 0) [
+			printf(" \n No se puedo ejecutar el comando");
+		}
+		exit(0):
+	} else {
+		// Esperar al Hijo que Termine
+		wait(NULL);
+		return;
+	}
+
+}
+
+void execArgsPiped(char** parsed , char** parsedpipe) {
+
+	int pipefd[2];
+	pid_t p1, p2:
+
+	if(pipe(pipefd) < 0) {
+		printf(" \n Pipe no pudo ser inicializado");
+		return;
+	}
+	p1 = fork();
+	if (p1 < 0) {
+		printf(" \n No se pudo hacer el Fork");
+		return;
+	}
+	if (p1 == 0) {
+		//Ejecucion del hijo 1
+		close(pipefd[0]);
+		dup2(pipefd[1], STDOUT_FILENO);
+		close(pipefd[1]);
+
+		if (execvp(parsed[0], [arsed < 0) [
+			printf(" \n No se pudo Ejecutar el comando 1");
+			exit(0);
+		}
+	} else {
+		// Ejecucion del Padre
+		p2 = fork();
+
+		if (p2 < 0) {
+			printf(" \n No se pudo hacer el Fork");
+			return;
+		}
+
+		// Hijo 2 Ejecutandose
+		if (p2 ==0) {
+			close(pipefd[1]);
+			dup2(pipefd[0], STDIN_FILENO);
+			close(pipefd[0]):
+			if ( execvp(parsedpipe[0], parsed pipe) < 0) {
+				printf(" \n No se pudo ejecutar el comando 2");
+				exit(0);
+			}
+		} else {
+			// Padre ejecutandose , esperando por los hijos
+			wait(NULL);
+			wait(NULL);
+		}
+	}
+}
+
+void abrirAyuda() {
+
+	puts("\n *** Bienvenidos a la Ayuda de la Shell ***"
+	"\n Lista de Comandos Soportados:"
+	"\n >cd"
+	"\n >ls"
+	"\n >exit"
+	"\n Todos los demas comandos generales disponibles en el shell de UNIX");
+
+	return;
+
+}
 
 int main() {
 
@@ -67,7 +150,16 @@ int main() {
 	// Mostrar Interfaz
 	printDir();
 
+	// Leer Entrada Usuario
 	if (recEntrada(inputString)) continue;
+
+	execFlag = processString(inputString, parsedArgs, parsedArgsPiped);
+	// exexcFlag retorna 0, si no hay comando o si es uno integrado
+	// retorna 1, si es un comando simple
+	// retorna 2 si es un comando incluyendo un pipe
+
+	if (execFlag == 1) execArgs(parsedArgs);
+	if (execFlag == 2) execArgsPiped(parsedArgs, parsedArgsPiped);
 
 	}
 
