@@ -2,10 +2,10 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include<sys/types.h>
-#include<sys/wait.h>
-#include<readline/readline.h>
-#include<readline/history.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 #define MAXLETTERS 1000 // numero maximo de letras sportado
 #define MAXARGS 100 // numero maximo de comandos suportados
@@ -35,6 +35,23 @@ void printDir() {
 
 }
 
+// Recibir Entrada
+
+int recEntrada (char* str) {
+
+	char* buf;
+	buf = readline("\n$ ");
+
+	if (strlen(buf) != 0) {
+		add_history(buf);
+		strcpy(str, buf);
+		return 0;
+	} else {
+		return 1;
+	}
+
+}
+
 
 int main() {
 
@@ -50,6 +67,7 @@ int main() {
 	// Mostrar Interfaz
 	printDir();
 
+	if (recEntrada(inputString)) continue;
 
 	}
 
